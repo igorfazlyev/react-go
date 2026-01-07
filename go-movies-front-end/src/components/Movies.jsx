@@ -1,11 +1,22 @@
 import { useEffect, useState } from "react"
-import moviesList from "../data/movies"
+//import moviesList from "../data/movies"
 import { Link } from "react-router-dom"
 
 const Movies = ()=>{
     const [movies, setMovies] = useState([])
     useEffect(()=>{
-        setMovies(moviesList)
+        const headers = new Headers()
+        headers.append("Content-Type", "application/json")
+        const requestOptions = {
+            method: "GET",
+            headers: headers,
+        }
+        const backednAddress = "https://bookish-spork-974xg5r4jv5h749v-8080.app.github.dev/movies"
+        fetch(backednAddress, requestOptions)
+            .then(resp=>resp.json())
+            .then(data=>setMovies(data))
+            .catch(err=>console.log(err))
+        //setMovies(moviesList)
     },[])
     return(
         <>
