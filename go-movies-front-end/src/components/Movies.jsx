@@ -11,7 +11,7 @@ const Movies = ()=>{
             method: "GET",
             headers: headers,
         }
-        const backednAddress = "https://bookish-spork-974xg5r4jv5h749v-8080.app.github.dev/movies"
+        const backednAddress = "http://localhost:8080/movies"
         fetch(backednAddress, requestOptions)
             .then(resp=>resp.json())
             .then(data=>setMovies(data))
